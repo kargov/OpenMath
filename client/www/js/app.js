@@ -1,4 +1,4 @@
-angular.module('starter', ['ui.router','starter.controllers', 'starter.services'])
+angular.module('openMath', ['ui.router','openMath.controllers', 'openMath.services'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
