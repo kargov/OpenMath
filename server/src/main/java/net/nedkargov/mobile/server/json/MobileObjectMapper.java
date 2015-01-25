@@ -1,4 +1,4 @@
-package net.xdwonderer.mobile.server.json;
+package net.nedkargov.mobile.server.json;
 
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -16,10 +16,9 @@ public class MobileObjectMapper extends ObjectMapper {
     public MobileObjectMapper() {
         configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         setVisibilityChecker(new VisibilityChecker.Std(JsonAutoDetect.Visibility.NONE));
-        configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
 
         setTimeZone(TimeZone.getDefault());
-
         registerModule(new MobileJsonModule());
         registerModule(new JodaModule());
     }

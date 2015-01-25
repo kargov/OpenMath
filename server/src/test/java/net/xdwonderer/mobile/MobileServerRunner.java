@@ -7,7 +7,7 @@ public class MobileServerRunner {
 	private Server server;
 
 	public static void main(String[] args) throws Exception {
-		new MobileServerRunner().start(8083);
+		new MobileServerRunner().start(8088);
 	}
 
 	public void start(int port) throws Exception {

@@ -1,4 +1,4 @@
-package net.xdwonderer.mobile.server;
+package net.nedkargov.mobile.server;
 
 public class CurrentRequestMessage {
     private Object inputMessage;

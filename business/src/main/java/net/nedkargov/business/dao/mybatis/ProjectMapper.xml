@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.nedkargov.business.dao.mybatis.ProjectMapper">
+
+    <insert id="insertProject" parameterType="net.nedkargov.business.domain.ProjectDetailsInterface" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+        project
+        (
+        name
+        )
+        VALUES
+        (
+        #{name}
+        )
+    </insert>
+
+    <select id="getProjects" resultMap="Project">
+        SELECT
+            project.id AS projectId,
+            project.name AS projectName
+        FROM
+            project
+    </select>
+
+    <select id="getProjectDetails" resultMap="ProjectDetails">
+        SELECT
+            project.id AS projectId,
+            project.name AS projectName
+        FROM
+            project
+        where
+            project.id = #{id}
+    </select>
+
+    <delete id="deleteProject" parameterType="java.lang.Integer">
+        DELETE FROM
+            project
+        WHERE
+            project.id = #{id}
+    </delete>
+
+    <resultMap id="Project" type="net.nedkargov.business.domain.Project">
+        <id property="id" column="projectId" />
+        <result property="name" column="projectName"/>
+    </resultMap>
+
+    <resultMap id="ProjectDetails" type="net.nedkargov.business.domain.ProjectDetails">
+        <id property="id" column="projectId" />
+        <result property="name" column="projectName"/>
+    </resultMap>
+</mapper>

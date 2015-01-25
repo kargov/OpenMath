@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row">
+        <div id="projects" class="col-md-12">
+            <h1>Projects</h1>
+            <div ng-repeat-start="project in projects">
+                <div class="project">
+                    <div class="row">
+                        <h3 class="col-md-11">{{project.name}}</h3>
+                        <span class="glyphicon glyphicon-minus delete_project col-md-1" ng-click="removeProject(projects,$index)"></span>
+                    </div>
+                </div>
+            </div>
+            <div ng-repeat-end></div>
+            <div class="glyphicon glyphicon-plus add_project" ng-click="addProject()"></div>
+        </div>
+    </div>
+</div>

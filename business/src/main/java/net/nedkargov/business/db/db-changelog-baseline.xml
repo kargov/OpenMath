@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+	<changeSet id="baseline_table_player" author="Ned Kargov;">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="project" />
+			</not>
+		</preConditions>
+		<createTable tableName="project">
+			<column name="id" autoIncrement="true" type="bigint">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="name" type="varchar(255)">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+		<modifySql dbms="mysql">
+			<append value=" engine innodb" />
+		</modifySql>
+	</changeSet>
+</databaseChangeLog>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <context:component-scan base-package="net.nedkargov.business" />
+
+    <!-- ========================= DATASOURCExmlns:contextxmlns:context DEFINITION ========================= -->
+
+    <!-- DataSource configuration for Apache Commons DBCP. -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
+          p:driverClassName="${jdbc.driverClassName}"
+          p:url="${jdbc.url}"
+          p:username="${jdbc.username}" p:password="${jdbc.password}"
+          p:validationQuery="SELECT 1+1"
+          p:testOnBorrow="true"/>
+
+    <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
+        <property name="dataSource" ref="dataSource" />
+        <property name="changeLog" value="classpath:/net/nedkargov/business/db/db-changelog-master.xml" />
+    </bean>
+
+    <!-- ========================= RESOURCE DEFINITIONS ========================= -->
+
+    <!-- MyBatis SessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="mapperLocations" value="classpath*:net/nedkargov/business/dao/mybatis/*.xml" />
+    </bean>
+
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <!-- ========================= BUSINESS OBJECT DEFINITIONS ========================= -->
+
+    <!--
+        Activates various annotations to be detected in bean classes:
+        Spring's @Required and @Autowired, as well as JSR 250's @Resource.
+    -->
+    <context:annotation-config/>
+
+    <!--
+        Instruct Spring to perform declarative transaction management
+        automatically on annotated classes.
+    -->
+    <tx:annotation-driven/>
+
+    <!--
+        Exporter that exposes the Hibernate statistics service via JMX. Autodetects the
+        service MBean, using its bean name as JMX object name.
+    -->
+    <context:mbean-export/>
+
+    <bean id="projectMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="net.nedkargov.business.dao.mybatis.ProjectMapper" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+
+    <bean id="projectDao" class="net.nedkargov.business.dao.mybatis.MyBatisProjectDao"/>
+
+    <!-- ScoreBoard Service -->
+    <bean id="projectService" class="net.nedkargov.business.service.ProjectService"/>
+
+</beans>

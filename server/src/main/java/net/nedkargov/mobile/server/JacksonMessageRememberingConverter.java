@@ -1,4 +1,4 @@
-package net.xdwonderer.mobile.server;
+package net.nedkargov.mobile.server;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpInputMessage;

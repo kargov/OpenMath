@@ -13,21 +13,20 @@
     http://www.springframework.org/schema/aop
     http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 
-    <context:component-scan base-package="net.xdwonderer.mobile.server" />
+    <context:component-scan base-package="net.nedkargov.mobile.server" />
+
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">
-            <bean class="net.xdwonderer.mobile.server.JacksonMessageRememberingConverter">
+            <bean class="net.nedkargov.mobile.server.JacksonMessageRememberingConverter">
                 <property name="objectMapper" ref="objectMapper"/>
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-    <bean scope="request" class="net.xdwonderer.mobile.server.CurrentRequestMessage">
+    <bean scope="request" class="net.nedkargov.mobile.server.CurrentRequestMessage">
         <aop:scoped-proxy/>
     </bean>
 
-    <bean id="objectMapper" class="net.xdwonderer.mobile.server.json.MobileObjectMapper" />
-
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+    <bean id="objectMapper" class="net.nedkargov.mobile.server.json.MobileObjectMapper" />
 
 </beans>

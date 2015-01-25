@@ -1,4 +1,4 @@
-package net.xdwonderer.mobile.server.filter;
+package net.nedkargov.mobile.server.filter;
 
 
 import org.springframework.context.annotation.ComponentScan;
@@ -25,6 +25,7 @@ public class SimpleCORSFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         httpResponse.setHeader("Access-Control-Allow-Origin", "*");
         httpResponse.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        httpResponse.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, DELETE");
         chain.doFilter(request, response);
     }
 
