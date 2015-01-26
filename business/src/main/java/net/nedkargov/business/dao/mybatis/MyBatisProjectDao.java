@@ -12,12 +12,12 @@ import java.util.List;
 
 @Repository
 @Transactional(propagation = Propagation.MANDATORY)
-public class Dao implements ProjectDao {
+public class MyBatisProjectDao implements ProjectDao {
 
     private final ProjectMapper projectMapper;
 
     @Autowired
-    public Dao(ProjectMapper projectMapper) {
+    public MyBatisProjectDao(ProjectMapper projectMapper) {
         this.projectMapper = projectMapper;
     }
 
