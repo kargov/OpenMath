@@ -29,8 +29,8 @@ public class MyBatisProjectDao implements ProjectDao {
 
     @Override
     public ProjectDetailsInterface createProject(ProjectDetailsInterface project) {
-        Integer id = projectMapper.insertProject(project);
-        return projectMapper.getProjectDetails(id);
+        projectMapper.insertProject(project);
+        return project;
     }
 
     @Override

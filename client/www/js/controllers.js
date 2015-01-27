@@ -4,11 +4,14 @@ angular.module('openMath.controllers', ['ngResource'])
       $scope.projects = ProjectsService.query();
 
       $scope.addProject = function() {
-            var project = {
+            var newProject = {
                   name: 'New Project',
             };
-            ProjectService.create(project);
-            $scope.projects.push(project);
+            var project = ProjectService.create(newProject);
+            project.$promise.then(function(data) {
+                 $scope.projects.push(data);
+            });
+
       };
 
       $scope.removeProject = function(array, index){

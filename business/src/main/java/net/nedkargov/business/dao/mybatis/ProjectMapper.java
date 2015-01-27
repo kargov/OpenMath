@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ProjectMapper {
     List<ProjectInterface> getProjects();
-    Integer insertProject(ProjectDetailsInterface project);
+    void insertProject(ProjectDetailsInterface project);
     ProjectDetailsInterface getProjectDetails(Integer id);
     void deleteProject(Integer id);
 }

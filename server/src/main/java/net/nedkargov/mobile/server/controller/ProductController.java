@@ -22,8 +22,9 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/api/project", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-    public ProjectInterface create(ProjectDetails project) {
-        return service.createProject(project);
+    public ProjectDetailsInterface create(ProjectDetails project) {
+        ProjectDetailsInterface projectDetails = service.createProject(project);
+        return projectDetails;
     }
 
     @RequestMapping(value = "/api/project", method = RequestMethod.DELETE, produces = "application/json; charset=utf-8")
