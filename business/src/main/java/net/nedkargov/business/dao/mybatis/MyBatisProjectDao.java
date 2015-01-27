@@ -37,4 +37,10 @@ public class MyBatisProjectDao implements ProjectDao {
     public void removeProject(Integer id) {
         projectMapper.deleteProject(id);
     }
+
+    @Override
+    public ProjectDetailsInterface getProjectDetails(Integer id) {
+        ProjectDetailsInterface projectDetails = projectMapper.getProjectDetails(id);
+        return projectDetails;
+    }
 }

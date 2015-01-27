@@ -10,7 +10,7 @@ services.factory('ProjectsService', function ($resource) {
 
  services.factory('ProjectService', function ($resource) {
      return $resource(baseUrl + '/api/project', {}, {
-          query: { method: 'GET',  isArray: false},
+          query: { method: 'GET', isArray: false, params: {id: '@id'}},
           create: { method: 'POST', params: {name: '@name'} },
           remove: { method: 'DELETE',params: {id: '@id'} }
       });

@@ -9,4 +9,5 @@ public interface ProjectDao {
     List<ProjectInterface> getProjects();
     ProjectDetailsInterface createProject(ProjectDetailsInterface project);
     void removeProject(Integer id);
+    ProjectDetailsInterface getProjectDetails(Integer id);
 }

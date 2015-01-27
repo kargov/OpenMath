@@ -1,6 +1,6 @@
 angular.module('openMath.controllers', ['ngResource'])
 
-.controller('HomeCtrl',['$scope','ProjectsService', 'ProjectService', function ($scope, ProjectsService, ProjectService) {
+.controller('HomeCtrl',['$rootScope','$scope','$location','ProjectsService','ProjectService', function ($rootScope,$scope, $location, ProjectsService, ProjectService) {
       $scope.projects = ProjectsService.query();
 
       $scope.addProject = function() {
@@ -13,11 +13,22 @@ angular.module('openMath.controllers', ['ngResource'])
 
       $scope.removeProject = function(array, index){
           var removedProject = array.splice(index, 1);
-
-          var project = {
+          var projectId = {
                id: removedProject[0].id,
           };
-
-          ProjectService.remove(project);
+          ProjectService.remove(projectId);
       }
+
+      $scope.openProject = function(project) {
+          $rootScope.selectedProject = project;
+          $location.path( "/project" );
+       };
+
+}])
+
+.controller('ProjectCtrl',['$rootScope','$scope','ProjectService', function ($rootScope, $scope, ProjectService) {
+      var project = ProjectService.query($rootScope.selectedProject);
+      project.$promise.then(function(data) {
+         $scope.name = data.name;
+      });
 }]);

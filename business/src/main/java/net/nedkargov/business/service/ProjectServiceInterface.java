@@ -10,7 +10,7 @@ public interface ProjectServiceInterface {
 
     List<ProjectInterface> getProjects();
 
-    ProjectDetailsInterface getProjectDetails(Long id);
+    ProjectDetailsInterface getProjectDetails(Integer id);
 
     ProjectDetailsInterface createProject(ProjectDetailsInterface project);
 

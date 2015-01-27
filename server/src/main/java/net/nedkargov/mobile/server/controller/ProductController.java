@@ -16,8 +16,9 @@ public class ProductController {
     private ProjectServiceInterface service;
 
     @RequestMapping(value = "/api/project", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-    public ProjectDetailsInterface query(Integer id) {
-        return null;
+    public ProjectDetailsInterface getProjectDetails(Integer id) {
+        ProjectDetailsInterface projectDetails = service.getProjectDetails(id);
+        return projectDetails;
     }
 
     @RequestMapping(value = "/api/project", method = RequestMethod.POST, produces = "application/json; charset=utf-8")

@@ -6,10 +6,14 @@ angular.module('openMath', ['ngResource','ui.router','openMath.controllers', 'op
   $stateProvider
     // setup an abstract state for the tabs directive
     .state('home', {
-      url: "/home",
-      controller: 'HomeCtrl',
-      templateUrl: "templates/home.html"
-    });
+          url: "/home",
+          templateUrl: "templates/home.html"
+    })
+
+    .state('project', {
+          url: "/project",
+          templateUrl: "templates/project.html"
+     });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/home');

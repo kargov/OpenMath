@@ -27,8 +27,8 @@ public class ProjectService implements ProjectServiceInterface {
     }
 
     @Override
-    public ProjectDetailsInterface getProjectDetails(Long id) {
-        return null;
+    public ProjectDetailsInterface getProjectDetails(Integer id) {
+        return projectDao.getProjectDetails(id);
     }
 
     @Override
